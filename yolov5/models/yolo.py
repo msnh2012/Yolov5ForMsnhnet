@@ -39,8 +39,8 @@ class Detect(nn.Module):
         # x = x.copy()  # for profiling
         z = []  # inference output
         self.training |= self.export
+        tmp = Hook.hookInited
         for i in range(self.nl):
-            tmp = Hook.hookInited
             Hook.hookInited = tmp
             x[i] = self.m[i](x[i])  # conv
             Hook.hookInited = False
